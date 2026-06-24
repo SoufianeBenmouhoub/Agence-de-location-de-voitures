@@ -1,0 +1,28 @@
+@model IEnumerable<Locatic.Models.Voiture>
+
+<h1>Liste des voitures</h1>
+
+<a href="/Voitures/Create">
+    Ajouter une voiture
+</a>
+
+<table border="1">
+
+<tr>
+    <th>Immatriculation</th>
+    <th>Année</th>
+    <th>Tarif</th>
+    <th>Modèle</th>
+</tr>
+
+@foreach(var item in Model)
+{
+    <tr>
+        <td>@item.Immatriculation</td>
+        <td>@item.Annee</td>
+        <td>@item.TarifJournalier</td>
+        <td>@item.Modele?.Nom</td>
+    </tr>
+}
+
+</table>
