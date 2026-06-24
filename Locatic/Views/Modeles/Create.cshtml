@@ -1,0 +1,24 @@
+@model Locatic.Models.Modele
+
+<h1>Ajouter un modèle</h1>
+
+<form method="post">
+
+    <label>Nom</label>
+    <input asp-for="Nom" />
+
+    <br /><br />
+
+    <label>Marque</label>
+
+    <select asp-for="MarqueId"
+            asp-items="ViewBag.Marques">
+    </select>
+
+    <br /><br />
+
+    <button type="submit">
+        Enregistrer
+    </button>
+
+</form>
