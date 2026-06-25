@@ -1,28 +1,28 @@
 @model Locatic.Models.Reservation
 
-<h1>Créer réservation</h1>
+<h1>Nouvelle réservation</h1>
 
 <form asp-action="Create" method="post">
 
     <label>Client</label>
     <select asp-for="ClientId" asp-items="ViewBag.Clients"></select>
 
-    <br><br>
+    <br /><br />
 
-    <label>Voiture</label>
+    <label>Modèle de voiture</label>
     <select asp-for="VoitureId" asp-items="ViewBag.Voitures"></select>
 
-    <br><br>
+    <br /><br />
 
     <label>Date début</label>
     <input asp-for="DateDebut" type="date" />
 
-    <br><br>
+    <br /><br />
 
     <label>Date fin</label>
     <input asp-for="DateFin" type="date" />
 
-    <br><br>
+    <br /><br />
 
     <button type="submit">Réserver</button>
 

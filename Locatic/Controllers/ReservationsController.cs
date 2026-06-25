@@ -21,6 +21,7 @@ namespace Locatic.Controllers
             var reservations = _context.Reservations
                 .Include(r => r.Client)
                 .Include(r => r.Voiture)
+                    .ThenInclude(v => v.Modele)
                 .ToList();
 
             return View(reservations);
@@ -30,7 +31,19 @@ namespace Locatic.Controllers
         public IActionResult Create()
         {
             ViewBag.Clients = new SelectList(_context.Clients, "Id", "Nom");
-            ViewBag.Voitures = new SelectList(_context.Voitures, "Id", "Immatriculation");
+
+            ViewBag.Voitures = new SelectList(
+                _context.Voitures
+                    .Include(v => v.Modele)
+                    .Select(v => new
+                    {
+                        Id = v.Id,
+                        Nom = v.Modele.Nom
+                    })
+                    .ToList(),
+                "Id",
+                "Nom"
+            );
 
             return View();
         }
@@ -40,18 +53,23 @@ namespace Locatic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Reservation reservation)
         {
-            Console.WriteLine("POST EXECUTÉ");
-            Console.WriteLine("ModelState = " + ModelState.IsValid);
-
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine("ERROR: " + error.ErrorMessage);
-            }
-
             if (!ModelState.IsValid)
             {
                 ViewBag.Clients = new SelectList(_context.Clients, "Id", "Nom");
-                ViewBag.Voitures = new SelectList(_context.Voitures, "Id", "Immatriculation");
+
+                ViewBag.Voitures = new SelectList(
+                    _context.Voitures
+                        .Include(v => v.Modele)
+                        .Select(v => new
+                        {
+                            Id = v.Id,
+                            Nom = v.Modele.Nom
+                        })
+                        .ToList(),
+                    "Id",
+                    "Nom"
+                );
+
                 return View(reservation);
             }
 

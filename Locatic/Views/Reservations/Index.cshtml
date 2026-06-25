@@ -6,23 +6,23 @@
 
 <table border="1">
 
-<tr>
-    <th>Client</th>
-    <th>Voiture</th>
-    <th>Date début</th>
-    <th>Date fin</th>
-    <th>Prix</th>
-</tr>
-
-@foreach (var r in Model)
-{
     <tr>
-        <td>@r.Client?.Nom</td>
-        <td>@r.Voiture?.Immatriculation</td>
-        <td>@r.DateDebut.ToShortDateString()</td>
-        <td>@r.DateFin.ToShortDateString()</td>
-        <td>@r.PrixTotal</td>
+        <th>Client</th>
+        <th>Modèle</th>
+        <th>Date début</th>
+        <th>Date fin</th>
+        <th>Prix</th>
     </tr>
-}
+
+    @foreach (var r in Model)
+    {
+        <tr>
+            <td>@r.Client?.Nom</td>
+            <td>@r.Voiture?.Modele?.Nom</td>
+            <td>@r.DateDebut.ToShortDateString()</td>
+            <td>@r.DateFin.ToShortDateString()</td>
+            <td>@r.PrixTotal €</td>
+        </tr>
+    }
 
 </table>
