@@ -1,0 +1,20 @@
+@model IEnumerable<Locatic.Models.Marque>
+
+<h1>Liste des Marques</h1>
+
+<a href="/Marques/Create">Ajouter une marque</a>
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Nom</th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Nom</td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,13 @@
+@model Locatic.Models.Voiture
+
+<h1>Détails voiture</h1>
+
+<p>Marque : @Model.Modele?.Marque?.Nom</p>
+<p>Modèle : @Model.Modele?.Nom</p>
+<p>Immatriculation : @Model.Immatriculation</p>
+<p>Année : @Model.Annee</p>
+<p>Tarif : @Model.TarifJournalier</p>
+<p>Places : @Model.NombrePlaces</p>
+<p>Carburant : @Model.Carburant</p>
+
+<a href="/Voitures">Retour</a>

@@ -1,0 +1,24 @@
+@model IEnumerable<Locatic.Models.Client>
+
+<h1>Clients</h1>
+
+<a href="/Clients/Create">Ajouter un client</a>
+
+<table border="1">
+<tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Email</th>
+    <th>Téléphone</th>
+</tr>
+
+@foreach(var c in Model)
+{
+    <tr>
+        <td>@c.Nom</td>
+        <td>@c.Prenom</td>
+        <td>@c.Email</td>
+        <td>@c.Telephone</td>
+    </tr>
+}
+</table>

@@ -1,0 +1,27 @@
+@model Locatic.Models.Voiture
+
+<h1>Ajouter voiture</h1>
+
+<form method="post">
+
+<label>Immatriculation</label>
+<input asp-for="Immatriculation" />
+
+<label>Année</label>
+<input asp-for="Annee" />
+
+<label>Tarif</label>
+<input asp-for="TarifJournalier" />
+
+<label>Places</label>
+<input asp-for="NombrePlaces" />
+
+<label>Carburant</label>
+<input asp-for="Carburant" />
+
+<label>Modèle</label>
+<select asp-for="ModeleId" asp-items="ViewBag.Modeles"></select>
+
+<button type="submit">Enregistrer</button>
+
+</form>
