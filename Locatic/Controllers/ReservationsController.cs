@@ -50,7 +50,7 @@ namespace Locatic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Reservation reservation)
         {
-            if (!ModelState.IsValid)
+            void Reload()
             {
                 ViewBag.Clients = new SelectList(_context.Clients, "Id", "Nom");
 
@@ -66,26 +66,39 @@ namespace Locatic.Controllers
                     "Id",
                     "Nom"
                 );
+            }
 
+            if (reservation.DateFin <= reservation.DateDebut)
+            {
+                ModelState.AddModelError("", "La date de fin doit être après la date de début.");
+                Reload();
                 return View(reservation);
             }
 
-            var voiture = _context.Voitures.FirstOrDefault(v => v.Id == reservation.VoitureId);
+            var voiture = _context.Voitures
+                .FirstOrDefault(v => v.Id == reservation.VoitureId);
 
             if (voiture == null)
             {
-                ModelState.AddModelError("", "Voiture introuvable");
+                ModelState.AddModelError("", "Voiture introuvable.");
+                Reload();
+                return View(reservation);
+            }
+
+            bool overlap = _context.Reservations.Any(r =>
+                r.VoitureId == reservation.VoitureId &&
+                reservation.DateDebut < r.DateFin &&
+                reservation.DateFin > r.DateDebut
+            );
+
+            if (overlap)
+            {
+                ModelState.AddModelError("", "Cette voiture est déjà réservée sur cette période.");
+                Reload();
                 return View(reservation);
             }
 
             var jours = (reservation.DateFin - reservation.DateDebut).Days;
-
-            if (jours <= 0)
-            {
-                ModelState.AddModelError("", "Dates invalides");
-                return View(reservation);
-            }
-
             reservation.PrixTotal = jours * voiture.TarifJournalier;
 
             _context.Reservations.Add(reservation);

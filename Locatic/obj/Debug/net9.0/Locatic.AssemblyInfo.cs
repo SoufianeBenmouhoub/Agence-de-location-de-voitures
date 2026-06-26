@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Locatic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09d946b2eab8e3337effe9cb380092c3e87478dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16cdc847b646b02118c3d84ed2632d39c517c657")]
 [assembly: System.Reflection.AssemblyProductAttribute("Locatic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Locatic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
