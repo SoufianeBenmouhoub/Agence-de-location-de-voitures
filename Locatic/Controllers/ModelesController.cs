@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Locatic.Data;
 using Locatic.Models;
 
@@ -16,14 +17,16 @@ public class ModelesController : Controller
 
     public IActionResult Index()
     {
-        var modeles = _context.Modeles.ToList();
+        var modeles = _context.Modeles
+            .Include(m => m.Marque)
+            .ToList();
+
         return View(modeles);
     }
 
     public IActionResult Create()
     {
-        ViewBag.Marques =
-            new SelectList(_context.Marques, "Id", "Nom");
+        ViewBag.Marques = new SelectList(_context.Marques, "Id", "Nom");
 
         return View();
     }
@@ -36,11 +39,10 @@ public class ModelesController : Controller
             _context.Modeles.Add(modele);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
-        ViewBag.Marques =
-            new SelectList(_context.Marques, "Id", "Nom");
+        ViewBag.Marques = new SelectList(_context.Marques, "Id", "Nom");
 
         return View(modele);
     }

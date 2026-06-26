@@ -2,23 +2,26 @@
 
 <h1>Liste des modèles</h1>
 
-<a href="/Modeles/Create">
-    Ajouter un modèle
-</a>
+<a href="/Modeles/Create">Ajouter un modèle</a>
+
+<br />
+<br />
 
 <table border="1">
+
     <tr>
         <th>Id</th>
-        <th>Nom</th>
-        <th>MarqueId</th>
+        <th>Nom du modèle</th>
+        <th>Nom de la marque</th>
     </tr>
 
-    @foreach(var item in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>@item.Id</td>
             <td>@item.Nom</td>
-            <td>@item.MarqueId</td>
+            <td>@item.Marque?.Nom</td>
         </tr>
     }
+
 </table>
