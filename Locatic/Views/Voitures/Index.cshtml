@@ -6,23 +6,34 @@
     Ajouter une voiture
 </a>
 
+<br />
+<br />
+
 <table border="1">
 
-<tr>
-    <th>Immatriculation</th>
-    <th>Année</th>
-    <th>Tarif</th>
-    <th>Modèle</th>
-</tr>
-
-@foreach(var item in Model)
-{
     <tr>
-        <td>@item.Immatriculation</td>
-        <td>@item.Annee</td>
-        <td>@item.TarifJournalier</td>
-        <td>@item.Modele?.Nom</td>
+        <th>Immatriculation</th>
+        <th>Marque</th>
+        <th>Modèle</th>
+        <th>Année</th>
+        <th>Tarif</th>
+        <th>Actions</th>
     </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Immatriculation</td>
+            <td>@item.Modele?.Marque?.Nom</td>
+            <td>@item.Modele?.Nom</td>
+            <td>@item.Annee</td>
+            <td>@item.TarifJournalier €</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">
+                    Détails
+                </a>
+            </td>
+        </tr>
+    }
 
 </table>

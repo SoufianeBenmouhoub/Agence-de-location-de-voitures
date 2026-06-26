@@ -15,7 +15,6 @@ namespace Locatic.Controllers
             _context = context;
         }
 
-        // LISTE
         public IActionResult Index()
         {
             var reservations = _context.Reservations
@@ -27,7 +26,6 @@ namespace Locatic.Controllers
             return View(reservations);
         }
 
-        // FORM CREATE
         public IActionResult Create()
         {
             ViewBag.Clients = new SelectList(_context.Clients, "Id", "Nom");
@@ -48,7 +46,6 @@ namespace Locatic.Controllers
             return View();
         }
 
-        // POST CREATE
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Reservation reservation)
