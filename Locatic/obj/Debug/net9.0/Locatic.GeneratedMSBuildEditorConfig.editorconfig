@@ -80,8 +80,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9pdHVyZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/HP.COM/Desktop/TP Voiture 02/Locatic/Views/Voitures/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9pdHVyZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/HP.COM/Desktop/TP Voiture 02/Locatic/Views/Voitures/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9pdHVyZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/HP.COM/Desktop/TP Voiture 02/Locatic/Views/Voitures/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm9pdHVyZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/HP.COM/Desktop/TP Voiture 02/Locatic/Views/Voitures/Index.cshtml]

@@ -15,7 +15,6 @@ public class VoituresController : Controller
         _context = context;
     }
 
-    // Liste des voitures
     public IActionResult Index()
     {
         var voitures = _context.Voitures
@@ -26,7 +25,6 @@ public class VoituresController : Controller
         return View(voitures);
     }
 
-    // Détails d'une voiture
     public IActionResult Details(int id)
     {
         var voiture = _context.Voitures
@@ -34,36 +32,66 @@ public class VoituresController : Controller
             .ThenInclude(m => m.Marque)
             .FirstOrDefault(v => v.Id == id);
 
-        if (voiture == null)
-        {
-            return NotFound();
-        }
-
         return View(voiture);
     }
 
-    // Formulaire d'ajout
     public IActionResult Create()
     {
         ViewBag.Modeles = new SelectList(_context.Modeles, "Id", "Nom");
-
         return View();
     }
 
-    // Enregistrer une voiture
     [HttpPost]
     public IActionResult Create(Voiture voiture)
     {
-        if (ModelState.IsValid)
+        if (!ModelState.IsValid)
         {
-            _context.Voitures.Add(voiture);
-            _context.SaveChanges();
-
-            return RedirectToAction(nameof(Index));
+            ViewBag.Modeles = new SelectList(_context.Modeles, "Id", "Nom");
+            return View(voiture);
         }
 
-        ViewBag.Modeles = new SelectList(_context.Modeles, "Id", "Nom");
+        _context.Voitures.Add(voiture);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Edit(int id)
+    {
+        var voiture = _context.Voitures.Find(id);
+
+        ViewBag.Modeles = new SelectList(_context.Modeles, "Id", "Nom", voiture.ModeleId);
 
         return View(voiture);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Voiture voiture)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Modeles = new SelectList(_context.Modeles, "Id", "Nom", voiture.ModeleId);
+            return View(voiture);
+        }
+
+        _context.Voitures.Update(voiture);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var voiture = _context.Voitures
+            .Include(v => v.Modele)
+            .FirstOrDefault(v => v.Id == id);
+
+        return View(voiture);
+    }
+
+    [HttpPost]
+    public IActionResult Delete(Voiture voiture)
+    {
+        _context.Voitures.Remove(voiture);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
     }
 }

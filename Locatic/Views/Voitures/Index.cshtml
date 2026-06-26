@@ -1,16 +1,10 @@
 @model IEnumerable<Locatic.Models.Voiture>
 
-<h1>Liste des voitures</h1>
+<h1>Voitures</h1>
 
-<a href="/Voitures/Create">
-    Ajouter une voiture
-</a>
-
-<br />
-<br />
+<a href="/Voitures/Create">Ajouter voiture</a>
 
 <table border="1">
-
     <tr>
         <th>Immatriculation</th>
         <th>Marque</th>
@@ -20,20 +14,19 @@
         <th>Actions</th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Immatriculation</td>
-            <td>@item.Modele?.Marque?.Nom</td>
-            <td>@item.Modele?.Nom</td>
-            <td>@item.Annee</td>
-            <td>@item.TarifJournalier €</td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">
-                    Détails
-                </a>
-            </td>
-        </tr>
-    }
-
+@foreach (var v in Model)
+{
+    <tr>
+        <td>@v.Immatriculation</td>
+        <td>@v.Modele?.Marque?.Nom</td>
+        <td>@v.Modele?.Nom</td>
+        <td>@v.Annee</td>
+        <td>@v.TarifJournalier</td>
+        <td>
+            <a href="/Voitures/Details/@v.Id">Details</a> |
+            <a href="/Voitures/Edit/@v.Id">Edit</a> |
+            <a href="/Voitures/Delete/@v.Id">Delete</a>
+        </td>
+    </tr>
+}
 </table>

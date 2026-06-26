@@ -1,8 +1,10 @@
 @model Locatic.Models.Voiture
 
-<h1>Ajouter voiture</h1>
+<h1>Modifier voiture</h1>
 
 <form method="post">
+
+<input type="hidden" asp-for="Id" />
 
 <label>Immatriculation</label>
 <input asp-for="Immatriculation" />
@@ -22,6 +24,6 @@
 <label>Modèle</label>
 <select asp-for="ModeleId" asp-items="ViewBag.Modeles"></select>
 
-<button type="submit">Enregistrer</button>
+<button type="submit">Modifier</button>
 
 </form>

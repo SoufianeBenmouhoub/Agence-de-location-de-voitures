@@ -1,46 +1,13 @@
 @model Locatic.Models.Voiture
 
-<h1>Détails de la voiture</h1>
+<h1>Détails voiture</h1>
 
-<table border="1">
+<p>Marque : @Model.Modele?.Marque?.Nom</p>
+<p>Modèle : @Model.Modele?.Nom</p>
+<p>Immatriculation : @Model.Immatriculation</p>
+<p>Année : @Model.Annee</p>
+<p>Tarif : @Model.TarifJournalier</p>
+<p>Places : @Model.NombrePlaces</p>
+<p>Carburant : @Model.Carburant</p>
 
-    <tr>
-        <th>Marque</th>
-        <td>@Model.Modele?.Marque?.Nom</td>
-    </tr>
-
-    <tr>
-        <th>Modèle</th>
-        <td>@Model.Modele?.Nom</td>
-    </tr>
-
-    <tr>
-        <th>Immatriculation</th>
-        <td>@Model.Immatriculation</td>
-    </tr>
-
-    <tr>
-        <th>Année</th>
-        <td>@Model.Annee</td>
-    </tr>
-
-    <tr>
-        <th>Tarif journalier</th>
-        <td>@Model.TarifJournalier €</td>
-    </tr>
-
-    <tr>
-        <th>Nombre de places</th>
-        <td>@Model.NombrePlaces</td>
-    </tr>
-
-    <tr>
-        <th>Carburant</th>
-        <td>@Model.Carburant</td>
-    </tr>
-
-</table>
-
-<br />
-
-<a asp-action="Index">Retour à la liste</a>
+<a href="/Voitures">Retour</a>
